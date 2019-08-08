@@ -20,8 +20,8 @@ m = 0
 
 def sending(id, message):
 	global my_list, n, sost, answers
-	if n == 17:
-		bot.send_message(id,'Спасибо! Мы пришлём информацию вам на почту')
+	if n == 19:
+		bot.send_message(id,'Спасибо за обращение! Ближайщее время мы свяжемся с Вами')
 		answers.append('доп. комментарии: ' + message.text)
 		s = ''
 		for i in range(len(answers)):
@@ -48,51 +48,57 @@ def sending(id, message):
 		send_email(_from, _password, _to)
 		sost = 0
 	elif n == 1:
-		bot.send_message(id, 'Ваше имя: ')
+		bot.send_message(id, 'Ваш регион: ')
 		answers.append('для кого: ' + message.text)
 	elif n == 2:
+		bot.send_message(id, 'Ваше имя: ')
+		answers.append('регион: ' + message.text)
+	elif n == 3:
 		bot.send_message(id, 'Ваш почтовый ящик: ')
 		answers.append('имя: ' + message.text)
-	elif n == 3:
+	elif n == 4:
 		bot.send_message(id, 'Ваш телефон: ')
 		answers.append('почтовый ящик: ' + message.text)
-	elif n == 4:
+	elif n == 5:
 		bot.send_message(id, 'Возраст заёмщика: ')
 		answers.append('телефон: ' + message.text)
-	elif n == 5:
+	elif n == 6:
 		bot.send_message(id, 'Пол заёмщика: ', reply_markup=keyboard3())
 		answers.append('возраст: ' + message.text)
-	elif n == 6:
+	elif n == 7:
 		bot.send_message(id, 'Гражданство РФ: ', reply_markup=keyboard4())
 		answers.append('пол: ' + message.text)
-	elif n == 7:
+	elif n == 8:
 		bot.send_message(id, 'Регистрация заёмщика: ', reply_markup=keyboard5())
 		answers.append('гражданство РФ: ' + message.text)
-	elif n == 8:
+	elif n == 9:
 		bot.send_message(id, 'Тип занятости: ', reply_markup=keyboard6())
 		answers.append('регистрация: ' + message.text)
-	elif n == 9:
+	elif n == 10:
 		bot.send_message(id, 'Форма подтверждения дохода: ', reply_markup=keyboard7())
 		answers.append('тип занятости: ' + message.text)
-	elif n == 10:
+	elif n == 11:
 		bot.send_message(id, 'Общий трудовой стаж, лет: ')
 		answers.append('форма подтверждения: ' + message.text)
-	elif n == 11:
+	elif n == 12:
 		bot.send_message(id, 'Стаж на последнем месте работы, мес: ')
 		answers.append('общий трудовой стаж, лет: ' + message.text)
-	elif n == 12:
-		bot.send_message(id, 'Цель кредита: ', reply_markup=keyboard8())
-		answers.append('стаж на последнем месте работы, мес.: ' + message.text)
 	elif n == 13:
-		bot.send_message(id, 'Есть подобранный объект для покупки: ', reply_markup=keyboard9())
-		answers.append('цель кредита: ' + message.text)
+		bot.send_message(id, 'Статус недвижимости: ', reply_markup=keyboard8())
+		answers.append('стаж на последнем месте работы, мес: ' + message.text)
 	elif n == 14:
+		bot.send_message(id, 'Цель кредита: ', reply_markup=keyboard9())
+		answers.append('статус недвижимости: ' + message.text)
+	elif n == 15:
+		bot.send_message(id, 'Есть подобранный объект для покупки: ', reply_markup=keyboard10())
+		answers.append('цель кредита: ' + message.text)
+	elif n == 16:
 		bot.send_message(id, 'Стоимость объекта, руб: ')
 		answers.append('есть подобранный объект: ' + message.text)
-	elif n == 15:
+	elif n == 17:
 		bot.send_message(id, 'Размер первоначального взноса, руб: ')
 		answers.append('стоимость объекта: ' + message.text)
-	elif n == 16:
+	elif n == 18:
 		bot.send_message(id, 'Дополнительные комментарии: ')
 		answers.append('размер первоначального взноса: ' + message.text)
 
@@ -117,7 +123,12 @@ def handle_text(message):
 		n = 0
 		sost = 1
 		answers = []
-		answers.append('@' + message.chat.username)
+		if message.chat.username == None:
+			answers.append('нет ника')
+		else:
+			answers.append('@' + message.chat.username)
+
+
 		bot.send_message(message.chat.id, 'Для кого нужна ипотека?', reply_markup=keyboard2())
 	else:
 		if sost == 1:
@@ -179,6 +190,14 @@ def keyboard7():
 
 def keyboard8():
 	markup = types.ReplyKeyboardMarkup(one_time_keyboard=True, resize_keyboard=True)
+	button_1 = types.KeyboardButton('Строящееся')
+	button_2 = types.KeyboardButton('Вторичка')
+	markup.add(button_1)
+	markup.add(button_2)
+	return markup
+
+def keyboard9():
+	markup = types.ReplyKeyboardMarkup(one_time_keyboard=True, resize_keyboard=True)
 	button_1 = types.KeyboardButton('Квартира, апартаменты')
 	button_2 = types.KeyboardButton('Коммерческая недвижимость')
 	button_3 = types.KeyboardButton('Комната')
@@ -193,13 +212,14 @@ def keyboard8():
 	markup.add(button_6)
 	return markup
 
-def keyboard9():
+def keyboard10():
 	markup = types.ReplyKeyboardMarkup(one_time_keyboard=True, resize_keyboard=True)
 	button_1 = types.KeyboardButton('Да')
 	button_2 = types.KeyboardButton('Нет')
 	markup.add(button_1)
 	markup.add(button_2)
 	return markup
+
 
 
 bot.polling(none_stop=True, interval=0)
