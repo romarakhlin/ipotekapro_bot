@@ -17,7 +17,7 @@ m = 0
 def sending(id, message):
 	global my_list, n, sost, answers
 	if n == 4:
-		bot.send_message(id,'Спасибо за обращение! Ближайщее время мы свяжемся с Вами')
+		bot.send_message(id,'Спасибо за обращение! Ближайшее время мы свяжемся с Вами')
 		answers.append('город: ' + message.text)
 		s = ''
 		for i in range(len(answers)):
