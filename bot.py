@@ -61,11 +61,11 @@ def sending(id, message):
 
 @bot.message_handler(commands=['start'])
 def handle_start(message):
-	bot.send_message(message.chat.id, 'Нажмите кнопку "Заполнить Анкету"', reply_markup=keyboard1())
+	bot.send_message(message.chat.id, 'Нажмите кнопку "Заполнить заявку"', reply_markup=keyboard1())
 
 def keyboard1():
 	markup = types.ReplyKeyboardMarkup(one_time_keyboard=True, resize_keyboard=True)
-	button_1 = types.KeyboardButton('Заполнить Анкету')
+	button_1 = types.KeyboardButton('Заполнить заявку')
 	markup.add(button_1)
 	return markup
 
@@ -74,7 +74,7 @@ def keyboard1():
 def handle_text(message):
 	global my_list, n, sost, answers
 	if message.text == 'Заполнить Анкету':
-		bot.send_message(message.chat.id, 'Анкета: ')
+		bot.send_message(message.chat.id, 'Заявка: ')
 		n = 0
 		sost = 1
 		answers = []
