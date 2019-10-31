@@ -38,6 +38,7 @@ def sending(id, message):
 		    msg.attach(MIMEText(body, 'plain'))
 
 		    server = smtplib.SMTP_SSL('smtp.mail.ru', 465)
+	            server.starttls()
 		    server.login(addr_from, password)
 		    server.send_message(msg)
 		    server.quit()
