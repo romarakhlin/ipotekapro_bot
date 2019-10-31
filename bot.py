@@ -37,7 +37,7 @@ def sending(id, message):
 		    body = msg_text
 		    msg.attach(MIMEText(body, 'plain'))
 
-		    server = smtplib.SMTP('smtp.mail.ru', 587)
+		    server = smtplib.SMTP('smtp-server', 587)
 		    server.starttls()
 		    server.login(addr_from, password)
 		    server.send_message(msg)
