@@ -6,7 +6,7 @@ import mimetypes
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
-token = '999703184:AAHoyVu3nglDfPJLphH14Y4hwxK9nmqjXbQ'
+token = '974041945:AAHkLl1aYJm8a3RNu4veXADv-o52eUiVcSI'
 bot = telebot.TeleBot(token)
 
 answers = []
