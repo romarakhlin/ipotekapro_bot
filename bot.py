@@ -37,13 +37,13 @@ def sending(id, message):
 		    body = msg_text
 		    msg.attach(MIMEText(body, 'plain'))
 
-		    server = smtplib.SMTP('smtp.gmail.com', 587)
+		    server = smtplib.SMTP('smtp.yandex.ru', 587)
 		    server.starttls()
 		    server.login(addr_from, password)
 		    server.send_message(msg)
 		    server.quit()
-		_from = 'rrakhlin@gmail.com'
-		_password = 'RRakhlin3000'
+		_from = 'rrakhlin23@yandex.ru'
+		_password = 'Vladik0404'
 		_to = 'contrust24@gmail.com'
 		send_email(_from, _password, _to)
 		sost = 0
