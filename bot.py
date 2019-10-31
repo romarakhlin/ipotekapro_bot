@@ -64,7 +64,7 @@ def keyboard1():
 @bot.message_handler(content_types=['text'])
 def handle_text(message):
 	global my_list, n, sost, answers
-	if message.text == 'Заполнить Анкету':
+	if message.text == 'Заполнить заявку':
 		bot.send_message(message.chat.id, 'Заявка: ')
 		n = 0
 		sost = 1
