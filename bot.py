@@ -6,17 +6,13 @@ import mimetypes
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
-
 token = '974041945:AAHPwebQF4DP8Z4ulqq8m1vf-YIoa1AnKNg'
 bot = telebot.TeleBot(token)
-
 
 answers = []
 sost = 0
 n = 0
 m = 0
-
-
 
 def sending(id, message):
 	global my_list, n, sost, answers
@@ -33,10 +29,8 @@ def sending(id, message):
 		    msg['From'] = addr_from
 		    msg['To'] = addr_to
 		    msg['Subject'] = msg_subj
-
 		    body = msg_text
 		    msg.attach(MIMEText(body, 'plain'))
-
 		    server = smtplib.SMTP('smtp.yandex.ru', 587)
 		    server.starttls()
 		    server.login(addr_from, password)
@@ -57,8 +51,6 @@ def sending(id, message):
 		bot.send_message(id, 'Ваш город: ')
 		answers.append('почта: ' + message.text)
 
-
-
 @bot.message_handler(commands=['start'])
 def handle_start(message):
 	bot.send_message(message.chat.id, 'Нажмите кнопку "Заполнить заявку"', reply_markup=keyboard1())
@@ -68,7 +60,6 @@ def keyboard1():
 	button_1 = types.KeyboardButton('Заполнить заявку')
 	markup.add(button_1)
 	return markup
-
 
 @bot.message_handler(content_types=['text'])
 def handle_text(message):
@@ -82,12 +73,10 @@ def handle_text(message):
 			answers.append('нет ника')
 		else:
 			answers.append('@' + message.chat.username)
-
 		bot.send_message(message.chat.id, 'Как вас зовут?')
 	else:
 		if sost == 1:
 			n += 1
 			sending(message.chat.id, message)
-
-
+			
 bot.polling(none_stop=True, interval=0)
